@@ -31,14 +31,7 @@ export default function Projects() {
 
   {/* Buttons section */}
   <div className="mt-4 flex flex-col gap-2">
-    <a
-      className="btn"
-      href={p.demoLink} // Live demo link
-      target="_blank"
-      rel="noreferrer"
-    >
-      Demo
-    </a>
+   
     <a
       className="btn"
       href={p.link} // GitHub repo link
