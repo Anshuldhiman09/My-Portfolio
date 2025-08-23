@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ring: theme(colors.primary.DEFAULT);
+}
+
+.container-lg {
+  @apply max-w-6xl mx-auto px-4;
+}
+.btn {
+  @apply inline-flex items-center justify-center rounded-2xl px-5 py-2.5 font-medium
+         bg-primary text-slate-900 hover:opacity-90 transition shadow;
+}
+.card {
+  @apply rounded-2xl bg-slate-900/60 ring-1 ring-white/10 shadow-lg;
+}
+.nav-link {
+  @apply px-3 py-2 rounded-xl hover:bg-white/5;
+}
+.section {
+  @apply py-16 md:py-24;
+}
+.section-title {
+  @apply text-3xl md:text-4xl font-bold tracking-tight;
+}
+.section-subtitle {
+  @apply text-slate-400 mt-2;
+}
+
+
+/* Light mode default */
+body {
+  @apply bg-white text-gray-900;
+}
+
+/* Dark mode when html has class="dark" */
+.dark body {
+  @apply bg-gray-900 text-gray-100;
+}
