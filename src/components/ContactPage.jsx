@@ -38,7 +38,7 @@ export default function ContactForm() {
   return (
     <section className="section py-12" id="contact-form">
       <div className="max-w-lg mx-auto bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg">
-        <h2 className="text-2xl font-bold mb-6 text-center">Contact Me</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-black">Contact Me</h2>
 
         {/* 👀 Live Preview */}
         {formData.name && (
