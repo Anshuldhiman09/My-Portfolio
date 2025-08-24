@@ -5,7 +5,7 @@ export default function About() {
         {/* Left/Main content */}
         <div className="md:col-span-2">
           <h2 className="section-title">About</h2>
-          <p className="section-subtitle">Who I am & what I do</p>
+          <p className="section-subtitle">Who am I & what I do</p>
           <p className="mt-6 text-slate-300 leading-7">
             Passionate BCA student with hands-on experience in full-stack application development. 
             Skilled in Java, Spring Boot, React, PostgreSQL, and REST APIs, with strong backend and
