@@ -65,7 +65,7 @@ export default function FloatingCircularNav() {
               <X size={28} />
             ) : (
               <img
-                src="/anshulDhiman.jpeg"
+                src="/anshulDhiman1.jpeg"
                 alt="Profile"
                 className="w-20 h-20 rounded-full object-cover"
               />

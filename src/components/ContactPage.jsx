@@ -1,5 +1,6 @@
 // src/components/ContactForm.jsx
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";  // ✅ import navigation hook
 import emailjs from "emailjs-com";
 
 export default function ContactForm() {
@@ -9,6 +10,8 @@ export default function ContactForm() {
     message: ""
   });
 
+  const navigate = useNavigate(); // ✅ initialize navigation
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -16,7 +19,6 @@ export default function ContactForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Replace these with your EmailJS keys
     const serviceID = "service_ao5s62o";
     const templateID = "template_144agqu";
     const publicKey = "v98tqXossp6wZPFS9";
@@ -45,9 +47,9 @@ export default function ContactForm() {
           <p className="text-sm mb-2 text-black">Hello <b>{formData.name}</b> 👋</p>
         )}
         {formData.email && (
-<p className="text-sm mb-4 text-black">
-  We’ll reply to <b className="text-black">{formData.email}</b>
-</p>
+          <p className="text-sm mb-4 text-black">
+            We’ll reply to <b className="text-black">{formData.email}</b>
+          </p>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -69,15 +71,15 @@ export default function ContactForm() {
             required
             className="w-full p-3 border rounded-lg bg-white text-gray-900 dark:bg-gray-800 dark:text-white"
           />
-         <textarea
-  name="message"
-  placeholder="Your Message"
-  rows="5"
-  value={formData.message}
-  onChange={handleChange}
-  required
-  className="w-full p-3 border rounded-lg bg-white text-gray-900 dark:bg-gray-800 dark:text-white"
-/>
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            rows="5"
+            value={formData.message}
+            onChange={handleChange}
+            required
+            className="w-full p-3 border rounded-lg bg-white text-gray-900 dark:bg-gray-800 dark:text-white"
+          />
 
           <button
             type="submit"
@@ -86,6 +88,14 @@ export default function ContactForm() {
             Send
           </button>
         </form>
+
+        {/* 🔙 Back to Home Button */}
+        <button
+          onClick={() => navigate("/")}
+          className="w-full mt-4 bg-gray-500 text-white p-3 rounded-lg hover:bg-gray-600 transition"
+        >
+          Back to Home
+        </button>
       </div>
     </section>
   );

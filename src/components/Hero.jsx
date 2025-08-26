@@ -15,7 +15,7 @@ export default function Hero() {
           <div className="grid place-items-center">
             <div className="rounded-full w-64 h-64 overflow-hidden ring-4 ring-primary/50 shadow-lg shadow-primary/40 hover:scale-105 transition">
               <img
-                src="/WhatsApp Image 2025-08-22 at 1.04.16 PM.jpeg"
+                src="anshulDhiman1.jpeg"
                 alt="Anshul Dhiman"
                 className="w-full h-full object-cover"
               />

@@ -23,36 +23,53 @@ export default function Navbar() {
   }, [open])
 
   return (
-    <header className={`fixed top-0 inset-x-0 z-50 transition-all ${scrolled ? "backdrop-blur bg-slate-950/70 ring-1 ring-white/10" : ""}`}>
-      <nav className="container-lg h-16 flex items-center justify-between">
-        <a href="#" className="font-bold text-lg tracking-tight">PORTFOLIO</a>
-        <div className="hidden md:flex gap-1">
-          {links.map(l => (
-            <a key={l.href} href={l.href} className="nav-link">{l.label}</a>
-          ))}
-        </div>
-        <div className="md:hidden">
-          <button aria-label="Menu" onClick={() => setOpen(v => !v)} className="nav-link">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
-          </button>
-        </div>
-      </nav>
+    <>
+      <header className={`fixed top-0 inset-x-0 z-50 transition-all ${scrolled ? "backdrop-blur bg-slate-950/70 ring-1 ring-white/10" : ""}`}>
+        <nav className="container-lg h-16 flex items-center justify-between">
+          <a href="#" className="font-bold text-lg tracking-tight">PORTFOLIO</a>
+          <div className="hidden md:flex gap-1">
+            {links.map(l => (
+              <a key={l.href} href={l.href} className="nav-link">{l.label}</a>
+            ))}
+          </div>
+          <div className="md:hidden">
+            <button aria-label="Menu" onClick={() => setOpen(v => !v)} className="nav-link">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            </button>
+          </div>
+        </nav>
+      </header>
 
+      {/* Mobile Menu with Blur Overlay */}
       {open && (
-        <div className="md:hidden">
-          <div className="container-lg pb-6">
-            <div className="card p-2 divide-y divide-white/10">
-              {links.map(l => (
-                <a key={l.href} href={l.href} className="block px-4 py-3" onClick={() => setOpen(false)}>
-                  {l.label}
-                </a>
-              ))}
+        <div className="fixed inset-0 z-40 md:hidden">
+          {/* Overlay (blur + dark background) */}
+          <div
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            onClick={() => setOpen(false)}
+          ></div>
+
+          {/* Menu */}
+          <div className="absolute top-16 inset-x-0 z-50">
+            <div className="container-lg pb-6">
+              <div className="card p-2 divide-y divide-white/10">
+                {links.map(l => (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    className="block px-4 py-3"
+                    onClick={() => setOpen(false)}
+                  >
+                    {l.label}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       )}
-    </header>
+    </>
   )
 }
