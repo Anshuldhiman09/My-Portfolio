@@ -1,3 +1,5 @@
+import { link, title } from "framer-motion/client";
+
 export const projects = [
   {
     title: "Taskify",
@@ -24,6 +26,12 @@ export const projects = [
     description:"This project is a LIC customer information form application that allows users to record and manage customer details related to LIC policies. It provides a structured way to capture customer data and save it for future reference, making the process of maintaining LIC records more efficient and organized.",
     link:"https://github.com/Anshuldhiman09/LicForm",
     tags:["Java","SpringBoot","PostgreSQL"]
+  },
+  {
+    title:"Portfolio",
+    description:"A modern, responsive portfolio website designed for a client to showcase their work and achievements. Built with React and Tailwind CSS for a sleek UI, featuring smooth navigation, an about section, project highlights, and a contact form. Optimized for performance and mobile responsiveness to ensure a seamless user experience across all devices.",
+    link:"https://github.com/Anshuldhiman09/manojDhiman-portfolio",
+    tags:["React","TailwindCSS"]
   }
 ];
 

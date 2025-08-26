@@ -5,24 +5,35 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function FloatingCircularNav() {
   const [isOpen, setIsOpen] = useState(false);
   const [showNav, setShowNav] = useState(false);
+  const [offset, setOffset] = useState(24); // default gap from bottom
 
-  // Show nav after scrolling past Hero
+  // Show nav after Hero
   useEffect(() => {
     const handleScroll = () => {
       const hero = document.getElementById("home");
       if (!hero) return;
 
       const heroBottom = hero.offsetTop + hero.offsetHeight;
-      if (window.scrollY > heroBottom) {
-        setShowNav(true);
-      } else {
-        setShowNav(false);
-        setIsOpen(false);
+      setShowNav(window.scrollY > heroBottom);
+
+      // Footer check
+      const footer = document.querySelector("footer");
+      if (footer) {
+        const footerTop = footer.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (footerTop < windowHeight) {
+          // nav is colliding with footer → move it up
+          const overlap = windowHeight - footerTop;
+          setOffset(overlap + 24); // 24px padding
+        } else {
+          setOffset(24); // normal bottom spacing
+        }
       }
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // initial check
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -42,7 +53,8 @@ export default function FloatingCircularNav() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 50 }}
           transition={{ duration: 0.3 }}
-          className="fixed bottom-6 right-6 z-50 flex items-center justify-center"
+          style={{ bottom: offset, right: "1.5rem" }} // dynamic bottom
+          className="fixed z-50 flex items-center justify-center"
         >
           {/* Main Button */}
           <div
@@ -60,7 +72,7 @@ export default function FloatingCircularNav() {
             )}
           </div>
 
-          {/* Icons sliding out vertically */}
+          {/* Expanding icons */}
           <AnimatePresence>
             {isOpen &&
               icons.map((item, index) => (

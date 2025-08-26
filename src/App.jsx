@@ -8,6 +8,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import BottomNavBar from "./components/BottomNavbar";
 import ContactForm from "./components/ContactPage"; // <-- new component for the form
+import TechStack from "./components/TeckStack";
 
 export default function App() {
   return (
@@ -21,8 +22,10 @@ export default function App() {
               <>
                 <Hero />
                 <About />
+                
                 <Projects />
                 <Skills />
+                <TechStack/>
                 <Contact />
                 <BottomNavBar />
               </>
