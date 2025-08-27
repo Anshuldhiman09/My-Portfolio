@@ -1,6 +1,6 @@
 // src/components/ContactForm.jsx
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";  // ✅ import navigation hook
+import { useNavigate } from "react-router-dom";
 import emailjs from "emailjs-com";
 
 export default function ContactForm() {
@@ -10,7 +10,9 @@ export default function ContactForm() {
     message: ""
   });
 
-  const navigate = useNavigate(); // ✅ initialize navigation
+  const [isSending, setIsSending] = useState(false); // ✅ track sending state
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,6 +20,7 @@ export default function ContactForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSending(true); // ⏳ set sending state
 
     const serviceID = "service_ao5s62o";
     const templateID = "template_144agqu";
@@ -29,10 +32,12 @@ export default function ContactForm() {
         () => {
           alert("✅ Message sent successfully!");
           setFormData({ name: "", email: "", message: "" });
+          setIsSending(false); // ✅ reset sending state
         },
         (err) => {
           console.error("FAILED...", err);
           alert("❌ Failed to send. Try again.");
+          setIsSending(false); // ✅ reset on error too
         }
       );
   };
@@ -83,9 +88,14 @@ export default function ContactForm() {
 
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition"
+            disabled={isSending} // 🚫 disable button while sending
+            className={`w-full p-3 rounded-lg transition ${
+              isSending
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-500 hover:bg-blue-600 text-white"
+            }`}
           >
-            Send
+            {isSending ? "Sending..." : "Send"} {/* ✅ dynamic text */}
           </button>
         </form>
 
